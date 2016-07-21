@@ -1,0 +1,12 @@
+CODE_HOME=${HOME}/code
+MYCODE_HOME=${HOME}/mycode
+POWERLINE_BASE=/usr/local/lib/python2.7/dist-packages
+ZSH_CUSTOM=${MYCODE_HOME}/oh-my-zsh-custom
+DOCKER_ANSIBLE_HOME=${CODE_HOME}/workstation/docker-ansible
+alias ansible="${DOCKER_ANSIBLE_HOME}/bin/docker-ansible -u $USER"
+alias ansible-playbook="${DOCKER_ANSIBLE_HOME}/bin/docker-ansible-playbook"
+alias ap="${DOCKER_ANSIBLE_HOME}/bin/docker-ansible-playbook -u $USER"
+# export ANSIBLE_ASK_PASS=False
+# export ANSIBLE_PRIVATE_KEY_FILE=keys/cba.ansible
+# export ANSIBLE_REMOTE_USER=cba.ansible
+# export ANSIBLE_BECOME_ASK_PASS=False
