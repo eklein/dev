@@ -15,7 +15,8 @@ RUN apt-get install -y python-pip \
   && git clone --depth 1 --branch release https://github.com/adobe-fonts/source-code-pro.git \
           /usr/share/fonts/opentype/scp \
   && curl https://raw.githubusercontent.com/powerline/fonts/master/Inconsolata-g/Inconsolata-g%20for%20Powerline.otf \
-        -o /usr/share/fonts/opentype/Inconsolata-g.otf
+        -o /usr/share/fonts/opentype/Inconsolata-g.otf \
+  && locale-gen en_US.UTF-8
   # && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV DEBIAN_FRONTEND noninteractive
