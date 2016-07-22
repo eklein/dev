@@ -1,0 +1,6 @@
+#! /bin/sh
+
+sudo Xvfb ${DISPLAY} -screen 0 1024x768x24 &
+${ECLIPSE_HOME}/eclimd -b
+
+exec start_session

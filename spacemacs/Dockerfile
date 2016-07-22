@@ -1,16 +1,15 @@
 FROM ubuntu:latest
 
-RUN apt-get update
+ENV UNAME docker
 
-RUN apt-get install -y curl git emacs24-nox emacs24-el zsh sudo \
-          tree build-essential tmux vim silversearcher-ag
-
-RUN apt-get install -y python-pip \
+RUN apt-get update \
+  && apt-get install -y curl git emacs24-nox emacs24-el zsh sudo unzip \
+          tree build-essential tmux vim silversearcher-ag python-pip \
   && pip install --upgrade pip \
   && pip install powerline-status \
   && chsh -s $(which zsh) \
-  && useradd -m -s /bin/zsh docker \
-  && echo "docker ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+  && useradd -m -s /bin/zsh $UNAME \
+  && echo "$UNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
   && mkdir -p /usr/share/fonts/opentype \
   && git clone --depth 1 --branch release https://github.com/adobe-fonts/source-code-pro.git \
           /usr/share/fonts/opentype/scp \
@@ -19,22 +18,25 @@ RUN apt-get install -y python-pip \
   && locale-gen en_US.UTF-8
   # && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV DEBIAN_FRONTEND noninteractive
+USER $UNAME
+
+RUN git clone https://github.com/dalcouffe/dotfiles.git ${HOME}/mycode/dotfiles \
+ && ${HOME}/mycode/dotfiles/install.sh \
+ && git clone --depth 1 --branch develop https://github.com/syl20bnr/spacemacs ${HOME}/.emacs.d \
+ && emacs -batch -u $UNAME -q -kill
+
+COPY files/zshrc_local /home/$UNAME/.zshrc_local
+
+     ENV TERM xterm-256color
 ENV SHELL /bin/zsh
-ENV TERM xterm-256color
+
+RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" \
+ && git clone https://github.com/dalcouffe/oh-my-zsh-custom.git ${HOME}/mycode/oh-my-zsh-custom \
+ && mv ${HOME}/.zshrc.pre-oh-my-zsh ${HOME}/.zshrc
+
+ENV DEBIAN_FRONTEND noninteractive
 ENV LANG en_US.UTF-8
 
-USER docker
+COPY files/start_session /usr/local/bin/
 
-COPY files/zshrc_local /home/docker/.zshrc_local
-
-RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-RUN mkdir ${HOME}/mycode \
- && git clone --depth 1 --branch develop https://github.com/syl20bnr/spacemacs ${HOME}/.emacs.d \
- && git clone https://github.com/dalcouffe/oh-my-zsh-custom.git ${HOME}/mycode/oh-my-zsh-custom \
- && git clone https://github.com/dalcouffe/dotfiles.git ${HOME}/mycode/dotfiles \
- && ${HOME}/mycode/dotfiles/install.sh \
- && emacs -nw -batch -u docker -q -kill
-
-CMD ["emacs"]
+CMD ["/usr/local/bin/start_session"]
