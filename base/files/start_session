@@ -7,8 +7,6 @@ git config --global branch.master.rebase true
 [[ -z "${SKIP_PULL}" ]] && sh -c "cd ${HOME}/mycode/dotfiles && git pull"
 [[ -z "${SKIP_PULL}" ]] && sh -c "cd ${HOME}/mycode/oh-my-zsh-custom && git pull"
 
-cd ${HOME}
-tmux new -s ${HOSTNAME} -n 'emacs' -d emacs
-tmux new-window -d
-tmux new-window -d
-exec tmux attach -t ${HOSTNAME}
+[[ -e /var/run/docker.sock ]] && sudo chmod 777 /var/run/docker.sock
+
+[[ -n "$1" ]] && exec $1
