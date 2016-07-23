@@ -1,7 +1,7 @@
 FROM spacemacs
 
 ENV GOROOT /usr/local/go
-ENV GOPATH /home/${UNAME}/go
+ENV GOPATH ${USER_HOME}/go
 ENV PATH ${PATH}:/${GOROOT}/bin:${GOPATH}/bin
 
 RUN curl -k -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz \

@@ -9,9 +9,9 @@ RUN apt-get install -y openjdk-8-jdk-headless xvfb libswt-gtk-4-java \
   && curl -o /tmp/eclipse.tar.gz http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/mars/2/eclipse-java-mars-2-linux-gtk-x86_64.tar.gz \
   && tar -C /usr/local/etc -xzf /tmp/eclipse.tar.gz \
   && rm -rf /tmp/eclipse.tar.gz \
-  && chown -R $UNAME:$UNAME $ECLIPSE_HOME
+  && chown -R $USER:$USER $ECLIPSE_HOME
 
-USER $UNAME
+USER $USER
 
 RUN curl -o /tmp/eclim.jar http://heanet.dl.sourceforge.net/project/eclim/eclim/2.5.0/eclim_2.5.0.jar \
  && java -Dvim.skip=true -Declipse.home=$ECLIPSE_HOME -jar /tmp/eclim.jar install \
