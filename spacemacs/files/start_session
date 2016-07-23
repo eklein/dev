@@ -1,10 +1,10 @@
 #! /bin/zsh -i
 
-[[ -n "${GITHUB_USER}" ]] && git config -g user.name "${GITHUB_USER}"
-[[ -n "${GITHUB_EMAIL}" ]] && git config -g user.email "${GITHUB_EMAIL}"
+[[ -n "${GITHUB_USER}" ]] && git config --global user.name "${GITHUB_USER}"
+[[ -n "${GITHUB_EMAIL}" ]] && git config --global user.email "${GITHUB_EMAIL}"
 
-sh -c "cd ${HOME}/mycode/dotfiles && git pull"
-sh -c "cd ${HOME}/mycode/oh-my-zsh-custom && git pull"
+[[ -z "${SKIP_PULL}" ]] && sh -c "cd ${HOME}/mycode/dotfiles && git pull"
+[[ -z "${SKIP_PULL}" ]] && sh -c "cd ${HOME}/mycode/oh-my-zsh-custom && git pull"
 
 cd ${HOME}
 tmux new -s ${HOSTNAME} -n 'emacs' -d emacs
