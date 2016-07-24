@@ -1,4 +1,4 @@
-FROM spacemacs
+FROM daspoonman/spacemacs
 
 ENV GOROOT /usr/local/go
 ENV GOPATH ${USER_HOME}/go

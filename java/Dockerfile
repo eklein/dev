@@ -1,4 +1,4 @@
-FROM spacemacs
+FROM daspoonman/spacemacs
 
 ENV DISPLAY :1
 ENV ECLIPSE_HOME /usr/local/etc/eclipse
