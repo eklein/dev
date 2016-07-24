@@ -2,7 +2,6 @@
 
 [[ -n "${GITHUB_USER}" ]] && git config --global user.name "${GITHUB_USER}"
 [[ -n "${GITHUB_EMAIL}" ]] && git config --global user.email "${GITHUB_EMAIL}"
-git config --global branch.master.rebase true
 
 [[ -z "${SKIP_PULL}" ]] && sh -c "cd ${HOME}/mycode/dotfiles && git pull"
 [[ -z "${SKIP_PULL}" ]] && sh -c "cd ${HOME}/mycode/oh-my-zsh-custom && git pull"
