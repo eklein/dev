@@ -1,6 +1,6 @@
 #! /bin/sh
 
-sudo Xvfb ${DISPLAY} -screen 0 1024x768x24 &
-${ECLIPSE_HOME}/eclimd -b
+sudo Xvfb :1 -screen 0 1024x768x24 &
+DISPLAY=:1 ${ECLIPSE_HOME}/eclimd -b
 
 exec start_spacemacs_session

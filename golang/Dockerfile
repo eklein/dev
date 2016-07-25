@@ -12,4 +12,3 @@ RUN curl -k -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.6.3.linu
   && go get -u -v github.com/rogpeppe/godef \
   && go get -u -v golang.org/x/tools/cmd/oracle \
   && go get -u -v golang.org/x/tools/cmd/gorename
-

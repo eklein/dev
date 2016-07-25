@@ -1,6 +1,5 @@
 FROM daspoonman/spacemacs
 
-ENV DISPLAY :1
 ENV ECLIPSE_HOME /usr/local/etc/eclipse
 
 USER root
@@ -19,7 +18,8 @@ RUN curl -o /tmp/eclim.jar http://heanet.dl.sourceforge.net/project/eclim/eclim/
 
 RUN curl -s https://get.sdkman.io | sh \
  && sed -i 's/\(sdkman_auto_answer=\)false/\1true/' ${HOME}/.sdkman/etc/config \
- && /bin/zsh -c "source ${HOME}/.sdkman/bin/sdkman-init.sh && sdk install groovy && sdk install gradle"
+ && zsh -c "source ${HOME}/.sdkman/bin/sdkman-init.sh && sdk install groovy" \
+ && zsh -c "git clone https://github.com/dougborg/gdub.git /tmp/gdub && sudo /tmp/gdub/install && rm -rf /tmp/gdub"
 
 COPY files/start_env /usr/local/bin/
 
