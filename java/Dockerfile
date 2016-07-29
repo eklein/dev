@@ -13,8 +13,8 @@ RUN apt-get update \
 COPY files/zk_auth_client.conf /etc/zookeeper/authclient
 
 ENV CLIENT_JVMFLAGS='-Djava.security.auth.login.config=/etc/zookeeper/authclient'
-ENV ZOOKEEPER_BIN=/usr/share/zookeeper
-ENV PATH=${PATH}:${ZOOKEEPER_BIN}/bin
+ENV ZK_HOME=/usr/share/zookeeper
+ENV PATH=${PATH}:${ZK_HOME}/bin
 
 USER $USER
 
