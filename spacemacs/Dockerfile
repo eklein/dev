@@ -1,6 +1,6 @@
 FROM daspoonman/base-dev
 
-RUN sudo apt-get install -y emacs24-nox emacs24-el silversearcher-ag \
+RUN sudo apt-get install -y emacs24 silversearcher-ag \
   && git clone --depth 1 --branch develop https://github.com/syl20bnr/spacemacs ${USER_HOME}/.emacs.d \
   && emacs -batch -u ${USER} -q -kill
 
