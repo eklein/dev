@@ -10,7 +10,11 @@ RUN apt-get update \
   && ln -s /opt/intellij/bin/idea.sh /bin/idea \
   && rm -rf /tmp/*
 
-COPY files/zk_auth_client.conf /etc/zookeper/authclient
+COPY files/zk_auth_client.conf /etc/zookeeper/authclient
+
+ENV CLIENT_JVMFLAGS='-Djava.security.auth.login.config=/etc/zookeeper/authclient'
+ENV ZOOKEEPER_BIN=/usr/share/zookeeper
+ENV PATH=${PATH}:${ZOOKEEPER_BIN}/bin
 
 USER $USER
 
@@ -18,6 +22,3 @@ RUN curl -s https://get.sdkman.io | sh \
  && sed -i 's/\(sdkman_auto_answer=\)false/\1true/' ${HOME}/.sdkman/etc/config \
  && zsh -c "source ${HOME}/.sdkman/bin/sdkman-init.sh && sdk install groovy" \
  && zsh -c "git clone https://github.com/dougborg/gdub.git /tmp/gdub && sudo /tmp/gdub/install && rm -rf /tmp/gdub"
-
-ENV CLIENT_JVMFLAGS='-Djava.security.auth.login.config=/etc/zookeeper/authclient'
-ENV PATH=${PATH}:/usr/share/zookeeper/bin
