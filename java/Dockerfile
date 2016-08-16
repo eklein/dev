@@ -4,7 +4,7 @@ USER root
 
 RUN apt-get update \
   && apt-get install -y openjdk-8-jdk-headless libxext-dev libxrender-dev libxtst-dev zookeeper \
-  && curl -ko /tmp/intellij.tar.gz https://download-cf.jetbrains.com/idea/ideaIC-2016.2.tar.gz \
+  && curl -ko /tmp/intellij.tar.gz https://download-cf.jetbrains.com/idea/ideaIC-2016.2.1.tar.gz \
   && mkdir /opt/intellij \
   && tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
   && ln -s /opt/intellij/bin/idea.sh /bin/idea \
