@@ -39,6 +39,7 @@ RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/too
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG en_US.UTF-8
+ENV HISTFILE ${USER_HOME}/.zsh_history
 
 COPY files/zshrc_local $USER_HOME/.zshrc_local
 COPY files/start_session /usr/local/bin/
