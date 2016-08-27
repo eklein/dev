@@ -9,7 +9,7 @@ RUN apt-get update \
                  --recv-keys 58118E89F3A912897C070ADBF76221572C52609D \
   && echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' > /etc/apt/sources.list.d/docker.list \
   && apt-get update \
-  && apt-get install -y curl git zsh sudo unzip htop \
+  && apt-get install -y curl git zsh sudo unzip htop httpie \
           tree build-essential tmux vim python-pip docker-engine \
   && pip install --upgrade pip \
   && pip install powerline-status jedi==0.8.1 json-rpc==1.8.1 service_factory==0.1.2 \
