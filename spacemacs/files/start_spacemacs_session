@@ -3,7 +3,7 @@
 start_session
 
 cd ${HOME}
-tmux new -s ${HOSTNAME} -n 'emacs -nw' -d emacs
+tmux new -s ${HOSTNAME} -n 'emacs' -d emacs -nw
 tmux new-window -d
 tmux new-window -d
 exec tmux attach -t ${HOSTNAME}

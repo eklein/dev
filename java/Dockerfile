@@ -3,7 +3,7 @@ FROM daspoonman/spacemacs
 USER root
 
 RUN apt-get update \
-  && apt-get install -y openjdk-8-jdk-headless libxext-dev libxrender-dev libxtst-dev zookeeper \
+  && apt-get install -y openjdk-8-jdk-headless libxext-dev libxrender-dev libxtst-dev zookeeper libgl1-mesa-glx \
   && curl -ko /tmp/intellij.tar.gz https://download-cf.jetbrains.com/idea/ideaIC-2016.2.2.tar.gz \
   && mkdir /opt/intellij \
   && tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
