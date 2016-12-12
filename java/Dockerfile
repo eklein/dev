@@ -3,18 +3,12 @@ FROM daspoonman/spacemacs
 USER root
 
 RUN apt-get update \
-  && apt-get install -y openjdk-8-jdk-headless libxext-dev libxrender-dev libxtst-dev zookeeper libgl1-mesa-glx \
-  && curl -ko /tmp/intellij.tar.gz https://download-cf.jetbrains.com/idea/ideaIC-2016.2.2.tar.gz \
+  && apt-get install -y openjdk-8-jdk-headless libxext-dev libxrender-dev libxtst-dev zip \
+  && curl -ko /tmp/intellij.tar.gz https://download-cf.jetbrains.com/idea/ideaIC-2016.3.tar.gz \
   && mkdir /opt/intellij \
   && tar -xzf /tmp/intellij.tar.gz -C /opt/intellij --strip-components=1 \
   && ln -s /opt/intellij/bin/idea.sh /bin/idea \
   && rm -rf /tmp/*
-
-COPY files/zk_auth_client.conf /etc/zookeeper/authclient
-
-ENV CLIENT_JVMFLAGS='-Djava.security.auth.login.config=/etc/zookeeper/authclient'
-ENV ZK_HOME=/usr/share/zookeeper
-ENV PATH=${PATH}:${ZK_HOME}/bin
 
 USER $USER
 

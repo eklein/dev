@@ -3,7 +3,10 @@
 start_session
 
 cd ${HOME}
-tmux new -s ${HOSTNAME} -n 'emacs' -d emacs -nw
+tmux new -s ${HOSTNAME} -n 'emacs' -d
+tmux send-keys -t ${HOSTNAME}:1 'cd ~/code' C-m 'emacs' C-m
 tmux new-window -d
+tmux send-keys -t ${HOSTNAME}:2 'cd ~/code' C-m
 tmux new-window -d
+tmux send-keys -t ${HOSTNAME}:3 'cd ~/code' C-m
 exec tmux attach -t ${HOSTNAME}
