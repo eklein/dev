@@ -2,9 +2,10 @@ FROM daspoonman/spacemacs
 
 ENV GOROOT /usr/local/go
 ENV GOPATH ${USER_HOME}/go
+ENV GOVERSION 1.7.4
 ENV PATH ${PATH}:/${GOROOT}/bin:${GOPATH}/bin
 
-RUN curl -k -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz \
+RUN curl -k -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar.gz \
   && sudo tar -C /usr/local -xzf /tmp/go.tar.gz \
   && rm /tmp/go.tar.gz \
   && go get -u -v github.com/skelterjohn/wgo \
