@@ -4,7 +4,7 @@ start_session
 
 cd ${HOME}
 tmux new -s ${HOSTNAME} -n 'emacs' -d
-tmux send-keys -t ${HOSTNAME}:1 'cd ~/code' C-m 'emacs' C-m
+tmux send-keys -t ${HOSTNAME}:1 'cd ~/code' C-m 'emacs -nw' C-m
 tmux new-window -d
 tmux send-keys -t ${HOSTNAME}:2 'cd ~/code' C-m
 tmux new-window -d
