@@ -13,4 +13,5 @@ RUN curl -k -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSIO
   && go get -u -v github.com/rogpeppe/godef \
   && go get -u -v golang.org/x/tools/cmd/guru \
   && go get -u -v golang.org/x/tools/cmd/gorename \
-  && go get -u -v golang.org/x/tools/cmd/goimports
+  && go get -u -v golang.org/x/tools/cmd/goimports \
+  && gocode set autobuild true
