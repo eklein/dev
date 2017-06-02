@@ -1,7 +1,9 @@
 FROM daspoonman/base-dev
 
 RUN sudo apt-get update \
-  && sudo apt-get install -y emacs24 silversearcher-ag netcat libgl1-mesa-glx \
+  && sudo add-apt-repository ppa:kelleyk/emacs \
+  && sudo apt-get update \
+  && sudo apt-get install -y emacs25 silversearcher-ag netcat libgl1-mesa-glx \
   && git clone --depth 1 --branch develop https://github.com/syl20bnr/spacemacs ${USER_HOME}/.emacs.d \
   && emacs -batch -u ${USER} -q -kill
 

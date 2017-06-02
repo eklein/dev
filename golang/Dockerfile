@@ -2,7 +2,7 @@ FROM daspoonman/spacemacs
 
 ENV GOROOT /usr/local/go
 ENV GOPATH ${USER_HOME}/go
-ENV GOVERSION 1.8
+ENV GOVERSION 1.8.1
 ENV PATH ${PATH}:/${GOROOT}/bin:${GOPATH}/bin
 
 RUN curl -k -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar.gz \

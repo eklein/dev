@@ -1,16 +1,19 @@
-FROM ubuntu:xenial
+FROM ubuntu:latest
 
 ENV USER docker.dev
 ENV USER_HOME /home/${USER}
 
 RUN apt-get update \
-  && apt-get install -y apt-transport-https ca-certificates \
-  && apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
-                 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D \
-  && echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' > /etc/apt/sources.list.d/docker.list \
+  && apt-get install -y apt-transport-https ca-certificates software-properties-common curl locales \
+  && locale-gen en_US.UTF-8 \
+  && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+  && add-apt-repository \
+     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) \
+           stable" \
   && apt-get update \
-  && apt-get install -y curl git zsh sudo unzip htop httpie \
-          tree build-essential tmux vim python-pip docker-engine \
+  && apt-get install -y git zsh sudo unzip htop httpie \
+          tree build-essential tmux vim python-pip docker-ce \
   && pip install --upgrade pip \
   && pip install powerline-status "jedi>=0.9.0" "json-rpc>=1.8.1" "service_factory>=0.1.5" autoflake isort pylint \
   && chsh -s $(which zsh) \
@@ -20,8 +23,7 @@ RUN apt-get update \
   && git clone --depth 1 --branch release https://github.com/adobe-fonts/source-code-pro.git \
           /usr/share/fonts/opentype/scp \
   && curl https://raw.githubusercontent.com/powerline/fonts/master/Inconsolata-g/Inconsolata-g%20for%20Powerline.otf \
-        -o /usr/share/fonts/opentype/Inconsolata-g.otf \
-  && locale-gen en_US.UTF-8
+        -o /usr/share/fonts/opentype/Inconsolata-g.otf
 
 USER ${USER}
 
