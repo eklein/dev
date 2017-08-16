@@ -1,13 +1,14 @@
 FROM daspoonman/spacemacs
 
 ENV GOROOT /usr/local/go
-ENV GOPATH ${USER_HOME}/go
+ENV GOPATH ${USER_HOME}/go:${USER_HOME}/code/go
 ENV GOVERSION 1.8.3
-ENV PATH ${PATH}:/${GOROOT}/bin:${GOPATH}/bin
+ENV PATH ${PATH}:${GOROOT}/bin:${USER_HOME}/go/bin:${USER_HOME}/code/go
 
 RUN curl -k -o /tmp/go.tar.gz https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar.gz \
   && sudo tar -C /usr/local -xzf /tmp/go.tar.gz \
   && rm /tmp/go.tar.gz \
+  && go get -u github.com/golang/dep/cmd/dep \
   && go get -u -v github.com/skelterjohn/wgo \
   && go get -u -v github.com/nsf/gocode \
   && go get -u -v github.com/rogpeppe/godef \
